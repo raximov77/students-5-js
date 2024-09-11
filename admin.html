@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Students</title>
+    <style type="text/tailwindcss">
+        @layer utilities {
+          .content-auto {
+            content-visibility: auto;
+          }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex min-h-screen">
+        <div class="w-64 bg-[#F2EAE1] p-4 border-r border-gray-200">
+            <h1 class="text-[20px] font-bold text-gray-900 mb-10">
+                <span class="border-l-4 border-yellow-500 pl-2">Admin Students</span>
+            </h1>
+            <div class="flex flex-col items-center space-x-4 mb-20">
+                <div>
+                    <img id="profileImage" src="./images/persin-icon.svg" alt="Profile" class="rounded-full w-16 h-16 cursor-pointer">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-lg font-semibold">Karthi Madesh</h3>
+                    <p class="text-sm text-yellow-500">Admin</p>
+                </div>
+            </div>
+            <div class="mb-20">
+                <ul>
+                    <li class="mb-3">
+                        <a href="#" class="flex justify-center items-center space-x-4 p-3 bg-yellow-500 text-white rounded-md">
+                            <img src="./images/student.svg" alt="">
+                            <span>Students</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="logout">
+                <button class="flex items-center space-x-5 text-sm text-gray-600">
+                  <a href="https://www.google.com/" class="flex gap-4">
+                    <span>Logout</span>
+                    <img src="./images/logout.svg" alt="">
+                  </a>   
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1">
+            <div class="flex justify-between items-center mb-3 bg-[#F2EAE1] p-4">
+                <div class="flex items-center space-x-4">
+                    <a href="./index.html" class="">
+                        <img src="./images/caret-circle-down 1.svg 1.svg" alt="">
+                    </a>
+                </div>
+                <div class="cursor-pointer flex items-center space-x-4 mr-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search" class="px-4 py-2 rounded-md border border-gray-300" id="searchInput">
+                        <span class="absolute inset-y-0 right-3 flex items-center"><img src="./images/search.svg" alt=""></span>
+                    </div>
+                    <span class="text-xl"><img src="./images/bell 1.svg" alt=""></span>
+                </div>
+            </div>
+
+            
+            <div class="flex justify-between items-center mb-6 p-5 border-b-2 border-gray-200 ml-10 mr-10">
+                <h2 class="text-xl font-bold">Students List</h2>
+                <div class="flex items-center space-x-4">
+                    <button class="text-white px-4 py-2 rounded-md" id="sortButton"><img src="./images/sort.svg" alt=""></button>
+                    <button class="bg-yellow-400 text-white px-4 py-2 rounded-md" onclick="openModal()">Add New Student</button>
+                </div>
+            </div>
+
+          
+            <div class="overflow-x-auto p-7">
+                <table id="studentTable" class="min-w-full bg-white rounded-md shadow-md">
+                    <thead class="border-b-2 border-gray-300">
+                        <tr>
+                            <th class="p-4 text-center text-sm font-medium text-gray-700">Picture</th>
+                            <th class="p-4 text-center text-sm font-medium text-gray-700">Name</th>
+                            <th class="p-4 text-left text-sm font-medium text-gray-700">Email</th>
+                            <th class="p-4 text-left text-sm font-medium text-gray-700">Phone</th>
+                            <th class="p-4 text-left text-sm font-medium text-gray-700">Enroll Number</th>
+                            <th class="p-4 text-left text-sm font-medium text-gray-700">Date Admission</th>
+                            <th class="p-4 text-left text-sm font-medium text-gray-700">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm text-gray-700">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="addStudentModal" class="fixed inset-0 hidden flex justify-center items-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+            <h2 class="text-xl font-bold mb-4">Add New Student</h2>
+            <form id="studentForm">
+                <input type="hidden" id="rowIndex" value="">
+                <div class="mb-4">
+                    <label for="image" class="block text-sm font-medium text-gray-700">Profile Image</label>
+                    <input type="file" id="image" accept="image/*" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="name" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                    <input type="text" id="phone" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="enrollNumber" class="block text-sm font-medium text-gray-700">Enroll Number</label>
+                    <input type="text" id="enrollNumber" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="dateAdmission" class="block text-sm font-medium text-gray-700">Date Admission</label>
+                    <input type="date" id="dateAdmission" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button type="button" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-yellow-400 text-white rounded-md">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="moreStudentModal" class="fixed inset-0 hidden flex justify-center items-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+            <h2 class="text-xl font-bold mb-4">Student Details</h2>
+            <div class="mb-4">
+                <img id="moreImage" src="./images/persin-icon.svg" alt="Profile Image" class="w-24 h-24 rounded-full mx-auto mb-4">
+            </div>
+            <div class="mb-4">
+                <p><strong>Name:</strong> <span id="moreName"></span></p>
+                <p><strong>Email:</strong> <span id="moreEmail"></span></p>
+                <p><strong>Phone:</strong> <span id="morePhone"></span></p>
+                <p><strong>Enroll Number:</strong> <span id="moreEnrollNumber"></span></p>
+                <p><strong>Date Admission:</strong> <span id="moreDateAdmission"></span></p>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button type="button" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md" onclick="closeMoreModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./js/admin.js"></script>
+</body>
+</html>

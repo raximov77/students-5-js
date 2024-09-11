@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Login</title>
+    <style type="text/tailwindcss">
+        @layer utilities {
+          .content-auto {
+            content-visibility: auto;
+          }
+        }
+    </style>
+</head>
+<body class="login-body">
+  
+  <div class="flex h-screen items-center justify-center">
+    <div class="bg-white p-8 rounded-[20px] shadow-lg max-w-md w-full">
+      <h1 class="text-[32px] font-bold text-gray-900 mb-4 text-center">
+        <span class="border-l-4 border-yellow-500 pl-2">Admin Students</span>
+      </h1>
+      <h2 class="text-xl font-semibold text-center mb-2">SIGN IN</h2>
+      <p class="text-gray-500 mb-6 text-center">Enter your credentials to access your account</p>
+      <form id="loginForm" class="mt-8">
+        <label class="block text-left mb-4 text-gray-500">
+          Login
+          <input class="w-full p-2 mt-2 border placeholder:text-gray-300 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" type="text" id="username" placeholder="Enter your login" required autocomplete="off"/>
+        </label>
+        <label class="block text-left mb-2 text-gray-500">
+          Password
+          <input class="w-full p-2 mt-2 border placeholder:text-gray-300 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" type="password" id="password" placeholder="Enter your password" required autocomplete="off"/>  
+        </label>
+      <br>
+        <button class="bg-yellow-500 text-white font-semibold py-2 px-4 rounded w-full hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-500">SIGN IN</button>
+        <div class="flex justify-between items-center">
+          <a href="./register.html" id="forgotPassword" class="text-center text-[14px] font-normal py-2 px-4 rounded w-full hover:border-slate-200">SIGN UP</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  
+  
+
+
+
+    <script src="./js/login.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+    </script>
+</body>
+</html>
